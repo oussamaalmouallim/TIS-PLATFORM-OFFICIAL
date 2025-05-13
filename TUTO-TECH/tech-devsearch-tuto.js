@@ -284,7 +284,8 @@ function loadDevsearchTutorial() {
                 <i class="fas fa-check-circle"></i> Félicitations ! Vous connaissez maintenant les bases de la programmation avec DEVsearch.
             </div>
             <p>Pour approfondir vos connaissances, consultez la documentation complète ou suivez une formation spécialisée.</p>
-            <a href="#" class="btn btn-primary mt-3"><i class="fas fa-download"></i> Télécharger le manuel complet DEVsearch</a>
-        </div>
+            <a href="https://www.tiscontrol.com/fr/learning_bus_lesson4.html" target="_blank" class="btn btn-primary mt-3">
+                <i class="fas fa-external-link-alt"></i> Voir un tutorial complet sur DEVsearch
+            </a>
     `;
 }

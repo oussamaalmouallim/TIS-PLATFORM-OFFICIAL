@@ -357,7 +357,9 @@ function loadCablageTutorial() {
                 <i class="fas fa-check-circle"></i> Félicitations ! Vous connaissez maintenant les principes fondamentaux du câblage domotique TIS.
             </div>
             <p>Pour approfondir vos connaissances, consultez les schémas détaillés de chaque module et participez à nos formations pratiques.</p>
-            <a href="#" class="btn btn-primary mt-3"><i class="fas fa-download"></i> Télécharger le guide complet de câblage</a>
+            <a href="https://youtu.be/TBdjJbHCa3Y?si=RJ-RJpRrhTkYQKYC" target="_blank" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-external-link-alt"></i> Voir un tutorial vidéo sur le câblage
+            </a>
         </div>
     `;
 }
