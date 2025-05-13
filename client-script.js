@@ -98,7 +98,7 @@ function openGuide(guideId) {
             loadScenariosGuide();
             break;
         case 'VR':
-            title = 'VR';
+            title = 'Configuration et automatisation des volets roulants';
             loadUploadDownloadGuide();
             break;
         case 'reseau':
