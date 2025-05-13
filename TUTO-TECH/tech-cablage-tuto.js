@@ -75,7 +75,7 @@ function loadCablageTutorial() {
                                         <li>Vitesse: 115200 bauds</li>
                                         <li>Distance maximale totale: 1000m</li>
                                         <li>Nombre maximum de périphériques: 255</li>
-                                        <li>Tension d'alimentation: 24V DC</li>
+                                        <li>Tension d'alimentation: 12V DC</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
