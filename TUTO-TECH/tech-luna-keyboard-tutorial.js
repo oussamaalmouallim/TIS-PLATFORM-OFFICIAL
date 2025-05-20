@@ -5,7 +5,7 @@ function loadKeyboardLunaTutorial() {
             <h3>Programmation du clavier Luna</h3>
             <div class="row align-items-center mb-4">
                 <div class="col-md-6">
-                    <img src="images/clavier_luna.png" alt="Clavier Luna" class="img-fluid rounded">
+                    <img src="images/LUNA2.jpg" alt="Clavier Luna" class="img-fluid rounded">
                 </div>
                 <div class="col-md-6">
                     <p>Le clavier Luna est un périphérique d'entrée tactile élégant avec interface circulaire. Sa conception minimaliste et son éclairage LED personnalisable en font un élément à la fois fonctionnel et décoratif.</p>
@@ -50,10 +50,10 @@ function loadKeyboardLunaTutorial() {
                                 </li>
                                 <li>Connectez les fils du TIS BUS en respectant les couleurs:
                                     <ul>
-                                        <li>Rouge: +12V</li>
-                                        <li>Noir: GND</li>
-                                        <li>Jaune: DATA A</li>
-                                        <li>Vert: DATA B</li>
+                                        <li>Marron: +12V</li>
+                                        <li>Orange: GND</li>
+                                        <li>Bleu: DATA -</li>
+                                        <li>Vert: DATA +</li>
                                     </ul>
                                 </li>
                                 <li>Si nécessaire, configurez l'adresse du module via les micro-interrupteurs à l'arrière</li>
@@ -334,5 +334,16 @@ function loadKeyboardLunaTutorial() {
                                         <li>Configurez la sensibilité et la vitesse de variation</li>
                                         <li>Testez le contrôle en tournant le doigt sur le cercle</li>
                                     </ol>
+                                </div>
+                            div>  
+                        div> 
+                        <div class="text-center mt-5">
+                            <div class="alert alert-success">
+                                    <i class="fas fa-check-circle"></i> Félicitations ! Vous maîtrisez maintenant l'installation et la programmation du clavier LUNA.
+                            </div>
+                                    <p>Pour plus d'informations sur les fonctionnalités avancées ou les mises à jour firmware, consultez la documentation technique complète.</p>
+                                    <button class="btn btn-secondary mt-2" onclick="showModuleVideo('relais')"><i class="fas fa-play-circle"></i> Voir vidéo
+                                    </button>
+                        </div>                           
     `;
 }                       
