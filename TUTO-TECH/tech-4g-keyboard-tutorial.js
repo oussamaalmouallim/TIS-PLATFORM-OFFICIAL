@@ -5,7 +5,7 @@ function loadKeyboard4GTutorial() {
             <h3>Programmation du clavier 4G</h3>
             <div class="row align-items-center mb-4">
                 <div class="col-md-6">
-                    <img src="images/ADD-CAMERA.jpg" alt="Clavier 4G" class="img-fluid rounded">
+                    <img src="images/TIS-4G-PRODUCT.png" alt="Clavier 4G" class="img-fluid rounded">
                 </div>
                 <div class="col-md-6">
                     <p>Le clavier 4G est un périphérique d'entrée robuste et polyvalent compatible avec le système TIS. Il dispose de 20 touches rétroéclairées et d'un écran LCD intégré.</p>
@@ -49,10 +49,10 @@ function loadKeyboard4GTutorial() {
                                 </li>
                                 <li>Connectez les fils du TIS BUS en respectant les couleurs:
                                     <ul>
-                                        <li>Rouge: +12V</li>
-                                        <li>Noir: GND</li>
-                                        <li>Jaune: DATA A</li>
-                                        <li>Vert: DATA B</li>
+                                        <li>Marron: +12V</li>
+                                        <li>Orange: GND</li>
+                                        <li>Bleu: DATA -</li>
+                                        <li>Vert: DATA +</li>
                                     </ul>
                                 </li>
                                 <li>Configurez l'adresse du module via les commutateurs DIP à l'arrière</li>
@@ -466,7 +466,8 @@ function loadKeyboard4GTutorial() {
                 <i class="fas fa-check-circle"></i> Félicitations ! Vous maîtrisez maintenant l'installation et la programmation du clavier 4G.
             </div>
             <p>Pour plus d'informations sur les fonctionnalités avancées ou les mises à jour firmware, consultez la documentation technique complète.</p>
-            <a href="#" class="btn btn-secondary mt-3"><i class="fas fa-download"></i> Télécharger la fiche technique du clavier 4G</a>
+            <button class="btn btn-secondary mt-2" onclick="showModuleVideo('relais')"><i class="fas fa-play-circle"></i> Voir vidéo
+            </button>
         </div>
     `;
 }

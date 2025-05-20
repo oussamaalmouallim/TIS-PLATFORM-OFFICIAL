@@ -53,6 +53,18 @@ function openTutorial(tutorialId) {
     } else if (tutorialId === 'luna') {
         title = 'Tutoriel Programmation du clavier Luna';
         loadKeyboardLunaTutorial();
+    } else if (tutorialId === 'relais') {
+        title = 'Tutoriel Programmation du clavier Luna';
+        loadRelaisWiringTutorial();
+    } else if (tutorialId === 'variateur') {
+        title = 'Tutoriel Programmation du clavier Luna';
+        loadVariateurWiringTutorial();
+    } else if (tutorialId === 'ip-port') {
+        title = 'Tutoriel Programmation du clavier Luna';
+        loadIPPortWiringTutorial();
+    } else if (tutorialId === '4-zones') {
+        title = 'Tutoriel Programmation du clavier Luna';
+        load4ZonesWiringTutorial();                    
     }
     
     document.getElementById('tutorial-title').textContent = title;
