@@ -2,25 +2,23 @@ function loadKeyboard4GTutorial() {
     const container = document.getElementById('tutorial-container');
     container.innerHTML = `
         <div class="tutorial-section">
-            <h3>Programmation du clavier 4G</h3>
+            <h3>Programmation du clavier TER-4G</h3>
             <div class="row align-items-center mb-4">
                 <div class="col-md-6">
-                    <img src="images/TIS-4G-PRODUCT.png" alt="Clavier 4G" class="img-fluid rounded">
+                    <img src="images/4G.png" alt="Clavier 4G" class="img-fluid rounded">
                 </div>
                 <div class="col-md-6">
-                    <p>Le clavier 4G est un périphérique d'entrée robuste et polyvalent compatible avec le système TIS. Il dispose de 20 touches rétroéclairées et d'un écran LCD intégré.</p>
-                    <p>Ce tutoriel détaille l'installation, la configuration et la programmation avancée du clavier 4G.</p>
+                    <p>Le clavier TER-4G est un périphérique d'entrée robuste et polyvalent compatible avec le système TIS. Il dispose de 4 touches rétroéclairées.</p>
+                    <p>Ce tutoriel détaille l'installation, la configuration et la programmation avancée du clavier TER-4G.</p>
                     
                     <h4>Caractéristiques techniques</h4>
                     <ul>
-                        <li>20 touches programmables avec rétroéclairage</li>
-                        <li>Écran LCD 2x16 caractères</li>
-                        <li>Buzzer intégré pour feedback sonore</li>
+                        <li>4 touches programmables avec rétroéclairage</li>
                         <li>Connexion TIS BUS standard (4 fils)</li>
-                        <li>Alimentation: 12V DC via TIS BUS</li>
-                        <li>Consommation: 50mA (normal), 120mA (max avec rétroéclairage)</li>
+                        <li>Alimentation: 12-32V DC via TIS BUS</li>
+                        <li>Consommation: <20mA / 24V DC</li>
                         <li>Montage: en saillie ou encastré</li>
-                        <li>Indice de protection: IP40 (intérieur)</li>
+                        <li>Indice de protection: IP50 (intérieur)</li>
                     </ul>
                 </div>
             </div>
@@ -44,59 +42,20 @@ function loadKeyboard4GTutorial() {
                                 <li>Pour montage en saillie:
                                     <ul>
                                         <li>Fixez le support arrière au mur</li>
-                                        <li>Utilisez les 4 points de fixation</li>
+                                        <li>Utilisez les 2 points de fixation</li>
                                     </ul>
                                 </li>
                                 <li>Connectez les fils du TIS BUS en respectant les couleurs:
                                     <ul>
-                                        <li>Marron: +12V</li>
-                                        <li>Orange: GND</li>
-                                        <li>Bleu: DATA -</li>
-                                        <li>Vert: DATA +</li>
+                                        <li><span class="color-dot brown"></span>Marron: +12V</li>
+                                        <li><span class="color-dot Orange"></span>Orange: GND</li>
+                                        <li><span class="color-dot Blue"></span>Bleu: DATA -</li>
+                                        <li><span class="color-dot green"></span>Vert: DATA +</li>
                                     </ul>
-                                </li>
                                 <li>Configurez l'adresse du module via les commutateurs DIP à l'arrière</li>
                                 <li>Fixez le clavier sur son support et verrouillez-le</li>
                             </ol>
                         </div>
-                        <div class="col-md-6">
-                            <h5>Réglages matériels</h5>
-                            <p>Configuration des commutateurs DIP:</p>
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Commutateur</th>
-                                        <th>Fonction</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1-5</td>
-                                        <td>Adresse du module (binaire)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Résistance de terminaison (ON si en fin de ligne)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Mode de fonctionnement (OFF: normal, ON: programmation)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Réservé (laisser sur OFF)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
-                            <div class="alert alert-warning mt-3">
-                                <i class="fas fa-exclamation-triangle"></i> Configurez les commutateurs avant la mise sous tension. Tout changement nécessite un redémarrage du module.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         <div class="tutorial-section mt-5">
             <h3>Configuration de base avec DEVsearch</h3>
@@ -121,7 +80,6 @@ function loadKeyboard4GTutorial() {
                                             <ul>
                                                 <li>Intensité du rétroéclairage (0-100%)</li>
                                                 <li>Délai d'extinction du rétroéclairage</li>
-                                                <li>Volume du buzzer (0-100%)</li>
                                                 <li>Comportement de l'écran LCD</li>
                                             </ul>
                                         </li>
@@ -153,7 +111,6 @@ function loadKeyboard4GTutorial() {
                                         <li><strong>Valeur fixe</strong>: envoie une valeur spécifique (%, niveau)</li>
                                         <li><strong>Macro</strong>: séquence de plusieurs commandes</li>
                                         <li><strong>Mode</strong>: changement de mode système (Normal, Absent, Nuit)</li>
-                                        <li><strong>Navigation</strong>: pour interagir avec l'écran LCD</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
@@ -167,14 +124,13 @@ function loadKeyboard4GTutorial() {
                                                 <li>Action à effectuer</li>
                                                 <li>Paramètres (valeur, délai, etc.)</li>
                                                 <li>Feedback visuel (couleur, clignotement)</li>
-                                                <li>Feedback sonore (type de bip)</li>
                                             </ul>
                                         </li>
                                         <li>Définissez le comportement des pressions:
                                             <ul>
                                                 <li>Appui court</li>
                                                 <li>Appui long (maintenu)</li>
-                                                <li>Double-clic (si supporté)</li>
+                                                <li>Double-clic</li>
                                             </ul>
                                         </li>
                                         <li>Personnalisez le libellé de la touche (si étiquette disponible)</li>
@@ -190,62 +146,6 @@ function loadKeyboard4GTutorial() {
                 </div>
             </div>
         </div>
-        
-        <div class="tutorial-section mt-5">
-            <h3>Configuration avancée</h3>
-            
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            <h4 class="mb-0">Personnalisation de l'écran LCD</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5>Modes d'affichage</h5>
-                                    <p>L'écran LCD peut être configuré selon plusieurs modes:</p>
-                                    <ul>
-                                        <li><strong>Mode standard</strong>: affichage statique d'informations</li>
-                                        <li><strong>Mode défilement</strong>: informations qui défilent</li>
-                                        <li><strong>Mode alterné</strong>: alterne entre différentes informations</li>
-                                        <li><strong>Mode dynamique</strong>: change selon l'état du système</li>
-                                        <li><strong>Mode interactif</strong>: menu navigable avec les touches</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <h5>Types d'informations affichables</h5>
-                                    <ul>
-                                        <li>Date et heure</li>
-                                        <li>État du système (mode actif)</li>
-                                        <li>Température (si capteur disponible)</li>
-                                        <li>État des zones d'alarme</li>
-                                        <li>Alertes et notifications</li>
-                                        <li>Noms des scénarios actifs</li>
-                                        <li>Messages personnalisés</li>
-                                        <li>Guide de navigation pour les touches</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <h5 class="mt-4">Configuration de l'écran</h5>
-                            <ol>
-                                <li>Dans l'onglet "Écran LCD", sélectionnez le mode d'affichage</li>
-                                <li>Configurez le contenu pour chaque ligne (2 lignes disponibles)</li>
-                                <li>Pour le mode interactif, créez la structure du menu:
-                                    <ul>
-                                        <li>Définissez les menus et sous-menus</li>
-                                        <li>Associez des actions à chaque entrée</li>
-                                        <li>Configurez les touches de navigation</li>
-                                    </ul>
-                                </li>
-                                <li>Paramétrez les conditions d'affichage pour le mode dynamique</li>
-                                <li>Définissez les caractères spéciaux personnalisés si nécessaire</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             <div class="row mb-4">
                 <div class="col-md-12">
@@ -253,44 +153,17 @@ function loadKeyboard4GTutorial() {
                         <div class="card-header bg-secondary text-white">
                             <h4 class="mb-0">Fonctions de sécurité</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5>Configuration des codes d'accès</h5>
-                                    <p>Le clavier 4G peut servir de contrôle d'accès:</p>
-                                    <ol>
-                                        <li>Activez la fonction code dans l'onglet "Sécurité"</li>
-                                        <li>Définissez les codes utilisateurs (jusqu'à 20 codes):
-                                            <ul>
-                                                <li>Code principal administrateur</li>
-                                                <li>Codes secondaires utilisateurs</li>
-                                                <li>Codes temporaires (avec date d'expiration)</li>
-                                                <li>Codes sous contrainte (pour alarme silencieuse)</li>
-                                            </ul>
-                                        </li>
-                                        <li>Associez des droits à chaque code:
-                                            <ul>
-                                                <li>Accès à certaines fonctions</li>
-                                                <li>Activation/désactivation de l'alarme</li>
-                                                <li>Exécution de scénarios spécifiques</li>
-                                                <li>Plages horaires d'autorisation</li>
-                                            </ul>
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="card-body">
                                     <h5>Paramètres de sécurité</h5>
                                     <ul>
-                                        <li><strong>Verrouillage automatique</strong>: après un nombre d'essais incorrects</li>
-                                        <li><strong>Délai de déverrouillage</strong>: temps avant nouvelle tentative</li>
-                                        <li><strong>Alerte</strong>: notification en cas de tentatives multiples</li>
-                                        <li><strong>Journalisation</strong>: enregistrement des accès réussis/échoués</li>
-                                        <li><strong>Auto-protection</strong>: alarme si tentative d'ouverture du boîtier</li>
-                                        <li><strong>Témoin d'état</strong>: indication visuelle de l'état d'alarme</li>
+                                        <li><strong>Protection contre l'inversion de polarité</strong> : empêche les dommages en cas de mauvais câblage.</li>
+                                        <li><strong>Protection contre les décharges électrostatiques (ESD)</strong> : sécurise l'appareil contre les surtensions électrostatiques.</li>
+                                        <li><strong>Connexion sécurisée via TIS-BUS</strong> : assure une communication fiable avec le système domotique.</li>
+                                        <li><strong>Mise à jour via RS485</strong> : permet d'améliorer les fonctionnalités et la sécurité via des mises à jour.</li>
                                     </ul>
                                     
                                     <div class="alert alert-warning mt-3">
-                                        <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Pour le code administrateur, créez une sauvegarde sur papier conservée en lieu sûr. En cas d'oubli, une réinitialisation d'usine sera nécessaire.
+                                        <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Ces protections permettent d'assurer la fiabilité et la sécurité du clavier TER-4G.
                                     </div>
                                 </div>
                             </div>
@@ -317,11 +190,9 @@ function loadKeyboard4GTutorial() {
                                         <div class="card-body">
                                             <p>Installation près de la porte d'entrée:</p>
                                             <ul>
-                                                <li>Codes pour déverrouillage/verrouillage</li>
-                                                <li>Armement/désarmement alarme</li>
                                                 <li>Scénarios "Départ" et "Arrivée"</li>
-                                                <li>Affichage état général du système</li>
                                                 <li>Contrôle éclairage d'entrée</li>
+                                                <li>Contrôle de volet roulant d'entrée</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -338,26 +209,7 @@ function loadKeyboard4GTutorial() {
                                                 <li>Gestion des volets/stores</li>
                                                 <li>Scénarios d'ambiance</li>
                                                 <li>Contrôle de température</li>
-                                                <li>Information météo sur LCD</li>
                                                 <li>Accès aux fonctions multimedia</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card h-100">
-                                        <div class="card-header">
-                                            <h5>Contrôle de zone technique</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p>Installation dans local technique:</p>
-                                            <ul>
-                                                <li>Surveillance d'équipements techniques</li>
-                                                <li>Contrôle chaufferie/climatisation</li>
-                                                <li>Gestion irrigation/piscine</li>
-                                                <li>Affichage états et alarmes techniques</li>
-                                                <li>Menu dépannage pour techniciens</li>
-                                                <li>Accès sécurisé par code</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -420,40 +272,11 @@ function loadKeyboard4GTutorial() {
                                             </ul>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Écran LCD illisible</td>
-                                        <td>
-                                            <ul>
-                                                <li>Contraste mal réglé</li>
-                                                <li>Problème d'initialisation</li>
-                                                <li>Défaut hardware</li>
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            <ul>
-                                                <li>Ajuster le contraste (potentiomètre arrière)</li>
-                                                <li>Redémarrer l'alimentation</li>
-                                                <li>Restaurer les paramètres d'usine</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
-                            
-                            <h5 class="mt-4">Réinitialisation d'usine</h5>
-                            <ol>
-                                <li>Coupez l'alimentation du clavier</li>
-                                <li>Positionnez le commutateur DIP 7 sur ON</li>
-                                <li>Maintenez enfoncées les touches 1, 3 et 5 simultanément</li>
-                                <li>Remettez l'alimentation tout en maintenant ces touches</li>
-                                <li>Relâchez lorsque le message "Factory Reset" apparaît</li>
-                                <li>Attendez la fin de la réinitialisation</li>
-                                <li>Remettez le commutateur DIP 7 sur OFF</li>
-                                <li>Redémarrez le clavier</li>
-                            </ol>
-                            
+    
                             <div class="alert alert-warning mt-3">
-                                <i class="fas fa-exclamation-triangle"></i> <strong>Attention:</strong> La réinitialisation d'usine efface toute la programmation. Réalisez une sauvegarde préalable si possible.
+                                <i class="fas fa-exclamation-triangle"></i> <strong>Attention:</strong> En cas de problème ou de doute sur la procédure, consultez le manuel officiel avant d’effectuer cette opération.
                             </div>
                         </div>
                     </div>
