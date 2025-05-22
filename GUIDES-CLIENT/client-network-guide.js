@@ -141,7 +141,7 @@ function loadNetworkGuide() {
                         <div class="card-body">
                             <h4><i class="fas fa-film text-primary"></i> Vidéo tutoriel</h4>
                             <p>Connexion et configuration réseau</p>
-                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('NETWORK')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
                         </div>
                     </div>
                 </div>

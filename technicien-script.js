@@ -68,7 +68,11 @@ function showModuleVideo(moduleId) {
         case 'titan':
                 videoTitle = 'Configuration des circuits d éclairage';
                 videoUrl = src="videos/TUTO-NEW-LIGHTNING.mp4";
-            break;               
+            break;     
+        case 'NETWORK':
+                videoTitle = 'Configuration des circuits d éclairage';
+                videoUrl = src="videos/TUTO-NEW-NETWORK.mp4";
+            break;             
     }
     
     // Créer une modal pour afficher la vidéo
