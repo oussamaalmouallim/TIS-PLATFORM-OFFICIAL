@@ -56,7 +56,19 @@ function showModuleVideo(moduleId) {
         case 'titan':
                 videoTitle = 'Configuration des modules 4 Zones';
                 videoUrl = src="images/TUTO-4ZONES.mp4";
-            break;                 
+            break;  
+        case 'PROJECT':
+                videoTitle = 'Création des nouveaux projets';
+                videoUrl = src="videos/TUTO-NEW-PROJECT.mp4";
+            break;      
+        case 'titan':
+                videoTitle = 'Ajout des pièces/ des emplacements';
+                videoUrl = src="videos/TUTO-NEW-ROOM.mp4";
+            break; 
+        case 'titan':
+                videoTitle = 'Configuration des circuits d éclairage';
+                videoUrl = src="videos/TUTO-NEW-LIGHTNING.mp4";
+            break;               
     }
     
     // Créer une modal pour afficher la vidéo

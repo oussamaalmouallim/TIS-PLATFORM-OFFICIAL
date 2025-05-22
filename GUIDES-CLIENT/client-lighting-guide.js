@@ -149,6 +149,40 @@ function loadLightingGuide() {
                 </div>
             </div>
         </div>
+
+        <div class="guide-section mt-5">
+            <h3>Ressources complémentaires</h3>
+            
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4><i class="fas fa-film text-primary"></i> Vidéo tutoriel</h4>
+                            <p>Création de projet pas à pas</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('LIGHTNING')"><i class="fas fa-play-circle"></i> Regarder</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4><i class="fas fa-download text-primary"></i> Modèles gratuits</h4>
+                            <p>Bibliothèque de projets types</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"></i> Télécharger</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4><i class="fas fa-file-pdf text-primary"></i> Guide détaillé</h4>
+                            <p>Manuel de référence complet</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"></i> Voir vidéo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
         
         <div class="text-center mt-5">
             <div class="alert alert-success">
