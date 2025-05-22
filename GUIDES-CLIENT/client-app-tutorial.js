@@ -70,7 +70,7 @@ function loadMobileAppTutorial() {
             
             <div class="row align-items-center mb-4">
                 <div class="col-md-6 order-md-2">
-                    <img src="images/app_mobile_control.png" alt="Contrôles dans l'application" class="img-fluid rounded">
+                    <img src="images/APP-MAIN-SCREEN.jpg" alt="Contrôles dans l'application" class="img-fluid rounded">
                 </div>
                 <div class="col-md-6 order-md-1">
                     <h4>Éclairage</h4>

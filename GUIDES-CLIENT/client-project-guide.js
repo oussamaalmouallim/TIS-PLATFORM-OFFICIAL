@@ -170,7 +170,7 @@ function loadProjectCreationGuide() {
                         <div class="card-body">
                             <h4><i class="fas fa-film text-primary"></i> Vidéo tutoriel</h4>
                             <p>Création de projet pas à pas</p>
-                            <a href="#" class="btn btn-outline-primary">Regarder</a>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('PROJECT')"><i class="fas fa-play-circle"></i> Regarder</button>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@ function loadProjectCreationGuide() {
                         <div class="card-body">
                             <h4><i class="fas fa-download text-primary"></i> Modèles gratuits</h4>
                             <p>Bibliothèque de projets types</p>
-                            <a href="#" class="btn btn-outline-primary">Télécharger</a>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"></i> Télécharger</button>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@ function loadProjectCreationGuide() {
                         <div class="card-body">
                             <h4><i class="fas fa-file-pdf text-primary"></i> Guide détaillé</h4>
                             <p>Manuel de référence complet</p>
-                            <a href="#" class="btn btn-outline-primary">Consulter</a>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"></i> Voir vidéo</button>
                         </div>
                     </div>
                 </div>

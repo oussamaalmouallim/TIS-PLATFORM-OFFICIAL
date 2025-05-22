@@ -323,12 +323,42 @@ function loadUploadDownloadGuide() {
                 </div>
             </div>
             
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4><i class="fas fa-film text-primary"></i> Vidéo tutoriel</h4>
+                            <p>Organisation optimale des pièces</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4><i class="fas fa-download text-primary"></i> Modèles de plans</h4>
+                            <p>Plans types pour différents logements</p>
+                            <a href="#" class="btn btn-outline-primary">Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4><i class="fas fa-file-pdf text-primary"></i> Guide d'organisation</h4>
+                            <p>Bonnes pratiques et exemples</p>
+                            <a href="#" class="btn btn-outline-primary">Consulter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            
+            
             <div class="text-center mt-5">
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i> Félicitations ! Vous savez maintenant comment configurer et automatiser vos volets roulants avec le système TIS.
                 </div>
                 <p>L'automatisation des volets est un excellent moyen d'améliorer le confort et l'efficacité énergétique de votre maison.</p>
-                <a href="#" class="btn btn-primary mt-3"><i class="fas fa-download"></i> Télécharger le guide PDF complet sur les volets roulants</a>
             </div>
     `;
 }
