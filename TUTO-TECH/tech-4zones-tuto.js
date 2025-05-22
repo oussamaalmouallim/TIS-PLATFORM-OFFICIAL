@@ -87,10 +87,10 @@ function load4ZonesWiringTutorial() {
                                         <li>Localisez le bornier TIS Bus sur le module (généralement en haut)</li>
                                         <li>Connectez les 4 fils du TIS Bus en respectant le code couleur:
                                             <ul>
-                                                <li><span class="color-dot red"></span> Rouge: +12V</li>
-                                                <li><span class="color-dot black"></span> Noir: GND (masse)</li>
-                                                <li><span class="color-dot yellow"></span> Jaune: DATA A</li>
-                                                <li><span class="color-dot green"></span> Vert: DATA B</li>
+                                                <li><span class="color-dot brown"></span> Marron: +12V</li>
+                                                <li><span class="color-dot Orange"></span> Orange: GND (masse)</li>
+                                                <li><span class="color-dot Blue"></span> Bleu: DATA -</li>
+                                                <li><span class="color-dot green"></span> Vert: DATA +</li>
                                             </ul>
                                         </li>
                                         <li>Vérifiez que les fils sont bien serrés dans les borniers</li>
@@ -427,7 +427,9 @@ function load4ZonesWiringTutorial() {
                 <i class="fas fa-check-circle"></i> Vous maîtrisez maintenant le câblage et la configuration du module 4 Zones !
             </div>
             <p>Ce module polyvalent est idéal pour contrôler des systèmes complexes de manière structurée et modulaire.</p>
-            <a href="https://www.tiscontrol.com/Uploads/datasheet/En/TIS-4DL-IN.pdf" class="btn btn-secondary mt-3"><i class="fas fa-external-link-alt"></i> Télécharger le schéma complet en PDF</a>
-        </div>
+           <a href="https://www.tiscontrol.com/Uploads/datasheet/En/TIS-4DL-IN.pdf" target="_blank" class="btn btn-primary mt-3">
+                <i class="fas fa-external-link-alt"></i> Télécharger le schéma complet en PDF
+            </a>
+            </div>
     `;
 }

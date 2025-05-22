@@ -14,14 +14,13 @@ function loadKeyboardLunaTutorial() {
                     <h4>Caractéristiques techniques</h4>
                     <ul>
                         <li>Interface tactile capacitive circulaire</li>
-                        <li>8 zones tactiles personnalisables</li>
                         <li>Rétroéclairage LED RGB programmable</li>
                         <li>Capteur de proximité et de luminosité intégré</li>
                         <li>Connexion TIS BUS standard (4 fils)</li>
                         <li>Alimentation: 12V DC via TIS BUS</li>
-                        <li>Consommation: 30mA (normal), 80mA (max avec rétroéclairage)</li>
+                        <li>Consommation: <45mA / 24V DC</li>
                         <li>Montage: en saillie ou encastré</li>
-                        <li>Indice de protection: IP40 (intérieur)</li>
+                        <li>Indice de protection: IP50 (intérieur)</li>
                     </ul>
                 </div>
             </div>
@@ -50,10 +49,10 @@ function loadKeyboardLunaTutorial() {
                                 </li>
                                 <li>Connectez les fils du TIS BUS en respectant les couleurs:
                                     <ul>
-                                        <li>Marron: +12V</li>
-                                        <li>Orange: GND</li>
-                                        <li>Bleu: DATA -</li>
-                                        <li>Vert: DATA +</li>
+                                        <li><span class="color-dot brown"></span>Marron: +12V</li>
+                                        <li><span class="color-dot Orange"></span>Orange: GND</li>
+                                        <li><span class="color-dot Blue"></span>Bleu: DATA -</li>
+                                        <li><span class="color-dot green"></span>Vert: DATA +</li>
                                     </ul>
                                 </li>
                                 <li>Si nécessaire, configurez l'adresse du module via les micro-interrupteurs à l'arrière</li>
@@ -71,29 +70,6 @@ function loadKeyboardLunaTutorial() {
                                 <li>Ne serrez pas excessivement les vis de fixation (risque de déformation)</li>
                             </ul>
                             
-                            <h5>Configuration des micro-interrupteurs</h5>
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Interrupteur</th>
-                                        <th>Fonction</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1-6</td>
-                                        <td>Adresse du module (binaire)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Résistance de terminaison (ON si en fin de ligne)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Mode de fonctionnement (OFF: normal, ON: configuration)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -334,9 +310,7 @@ function loadKeyboardLunaTutorial() {
                                         <li>Configurez la sensibilité et la vitesse de variation</li>
                                         <li>Testez le contrôle en tournant le doigt sur le cercle</li>
                                     </ol>
-                                </div>
-                            div>  
-                        div> 
+                                </div> 
                         <div class="text-center mt-5">
                             <div class="alert alert-success">
                                     <i class="fas fa-check-circle"></i> Félicitations ! Vous maîtrisez maintenant l'installation et la programmation du clavier LUNA.
