@@ -1,4 +1,3 @@
-
 // Navigation Technicien
 function showTechSection(sectionId) {
     // Masquer toutes les sections technicien
@@ -106,7 +105,19 @@ function showModuleVideo(moduleId) {
     // Afficher la modal
     const videoModal = new bootstrap.Modal(document.getElementById('moduleVideoModal'));
     videoModal.show();
+
+    // Ajouter un écouteur pour arrêter la vidéo lorsque la modal est fermée
+document.addEventListener('hidden.bs.modal', (event) => {
+    if (event.target.id === 'moduleVideoModal') {
+        const iframe = event.target.querySelector('iframe');
+        if (iframe) {
+            iframe.src = ''; // Réinitialiser la source pour arrêter la vidéo
+        }
+    }
+});
+
 }
+
 
 // Gestion des schémas de câblage
 function openWiringDiagram(diagramId) {
