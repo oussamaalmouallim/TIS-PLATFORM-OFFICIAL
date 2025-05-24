@@ -148,9 +148,9 @@ function loadNetworkGuide() {
                 <div class="col-md-4 mb-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h4><i class="fas fa-download text-primary"></i> Fiche de configuration</h4>
-                            <p>Étapes rapides pour la connexion</p>
-                            <a href="#" class="btn btn-outline-primary">Télécharger</a>
+                            <h4><i class="fas fa-film text-primary"></i> Vidéo de démonstration</h4>
+                            <p>Connexion et configuration réseau</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('NETWORK2')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
                         </div>
                     </div>
                 </div>

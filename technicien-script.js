@@ -60,18 +60,22 @@ function showModuleVideo(moduleId) {
                 videoTitle = 'Création des nouveaux projets';
                 videoUrl = src="videos/TUTO-NEW-PROJECT.mp4";
             break;      
-        case 'titan':
+        case 'ROOM':
                 videoTitle = 'Ajout des pièces/ des emplacements';
                 videoUrl = src="videos/TUTO-NEW-ROOM.mp4";
             break; 
-        case 'titan':
+        case 'LIGHTNING':
                 videoTitle = 'Configuration des circuits d éclairage';
                 videoUrl = src="videos/TUTO-NEW-LIGHTNING.mp4";
             break;     
         case 'NETWORK':
-                videoTitle = 'Configuration des circuits d éclairage';
+                videoTitle = 'Connexion et configuration réseau';
                 videoUrl = src="videos/TUTO-NEW-NETWORK.mp4";
-            break;             
+            break;    
+        case 'NETWORK2':
+                videoTitle = 'Connexion et configuration réseau';
+                videoUrl = src="videos/TUTO-NET2.mp4";
+            break;                      
     }
     
     // Créer une modal pour afficher la vidéo
