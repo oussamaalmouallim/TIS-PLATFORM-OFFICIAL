@@ -140,3 +140,73 @@ function submitTechSupport() {
     const modal = bootstrap.Modal.getInstance(document.getElementById('techSupportModal'));
     modal.hide();
 }
+
+// Function to create and display contact information modal
+function showContactInfo() {
+    // Define the modal content
+    const modalContent = `
+        <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contactInfoModalLabel">Contactez-vous</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="contact-info">
+                            <div class="mb-3">
+                                <h6><i class="fas fa-phone-alt"></i> Téléphone</h6>
+                                <p><a href="tel:+212 661-053971">+212 661-053971</a></p>
+                            </div>
+                            <div class="mb-3">
+                                <h6><i class="fas fa-envelope"></i> Email</h6>
+                                <p><a href="mailto:oussamakanouni39@gmail.com">oussamakanouni39@gmail.com</a></p>
+                            </div>
+                            <div>
+                                <h6><i class="fas fa-map-marker-alt"></i> Adresse</h6>
+                                <p>54 Rue Al Fourate, Casablanca, Maroc</p>
+                            </div>
+                            <div class="mt-3">
+                                <h6><i class="fas fa-clock"></i> Horaires</h6>
+                                <p>Lundi - Vendredi: 08h30 - 18h00<br>Samedi: 08h30 - 12h00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // 1. **Remove any existing modal with the same ID before creating a new one.**
+    // This is crucial to ensure you're always working with a fresh instance.
+    const existingModal = document.getElementById('contactInfoModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // 2. **Create a new container and append the modal content.**
+    const modalContainer = document.createElement('div');
+    modalContainer.innerHTML = modalContent;
+    document.body.appendChild(modalContainer);
+
+    // 3. **Get the newly added modal element.**
+    const contactModalElement = document.getElementById('contactInfoModal');
+
+    // 4. **Initialize and show the Bootstrap modal.**
+    const contactModal = new bootstrap.Modal(contactModalElement);
+    contactModal.show();
+
+    // 5. **Add an event listener to remove the modal from the DOM when it's completely hidden.**
+    // This listener must be attached to the *newly created* modal instance.
+    contactModalElement.addEventListener('hidden.bs.modal', function () {
+        // This 'if' check is an extra safeguard, though .remove() handles non-existent elements gracefully.
+        if (contactModalElement) {
+            contactModalElement.remove();
+        }
+    });
+}
+
+
