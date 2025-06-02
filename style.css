@@ -591,7 +591,6 @@ hr {
     background-attachment: scroll;   /* Fixe le problème de compatibilité mobile */
     background-size: cover;        /* Affiche toute l'image sans zoom excessif */
     background-position: center top; 
-    background-repeat: no-repeat;
       /* Pour un bon rendu sur petits écrans */
   }
 }
