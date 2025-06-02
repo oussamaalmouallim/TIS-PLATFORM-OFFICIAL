@@ -585,3 +585,29 @@ hr {
         padding: 20px 15px;
     }
 }
+
+/* CSS */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #111;
+  color: #fff;
+  padding: 30px;
+}
+.footer-section {
+  flex: 1 1 250px;
+  margin: 10px;
+}
+.footer-section h4 {
+  margin-bottom: 10px;
+}
+.social-icons a {
+  margin-right: 10px;
+}
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
