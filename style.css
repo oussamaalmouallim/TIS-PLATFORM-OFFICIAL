@@ -17,6 +17,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
      background-image: url('images/background.png');
+     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-attachment: fixed;
@@ -584,5 +585,12 @@ hr {
     .profile-card, .tutorial-card, .guide-card, .support-card {
         padding: 20px 15px;
     }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll; /* Fixe le bug sur mobile */
+    background-size: cover;        /* Pour un bon rendu sur petits écrans */
+  }
 }
 
