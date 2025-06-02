@@ -16,6 +16,10 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-image: url('images/background.png');
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
     background-color: var(--light-bg);
     color: var(--text-dark);
     min-height: 100vh;
