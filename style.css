@@ -590,8 +590,8 @@ hr {
 @media (max-width: 768px) {
   body {
     background-attachment: scroll;   /* Fixe le problème de compatibilité mobile */
-    background-size: cover;        /* Affiche toute l'image sans zoom excessif */
-    background-position: center top; 
+    background-size: contain;        /* Affiche toute l'image sans zoom excessif */
+    background-position: center center; 
       /* Pour un bon rendu sur petits écrans */
   }
 }
