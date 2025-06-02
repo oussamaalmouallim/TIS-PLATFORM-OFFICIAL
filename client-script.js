@@ -130,3 +130,4 @@ function closeGuide() {
     document.getElementById('client-screen').classList.add('active');
 }
  
+

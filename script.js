@@ -210,3 +210,39 @@ function showContactInfo() {
 }
 
 
+// Fonction pour ouvrir un tutoriel
+function openTutorial(tutorialId) {
+    // Masquer l'écran principal
+    if (currentUserType === 'client') {
+        document.getElementById('client-screen').classList.remove('active');
+    } else {
+        document.getElementById('technicien-screen').classList.remove('active');
+    }
+    
+    // Afficher l'écran de tutoriel
+    document.getElementById('tutorial-content').classList.add('active');
+    
+    // Définir le titre du tutoriel
+    let title = '';
+    if (tutorialId === 'app-mobile' || tutorialId === 'app-mobile-tech') {
+        title = 'Tutoriel Application Mobile TIS';
+        loadMobileAppTutorial();
+    } else if (tutorialId === 'tablette' || tutorialId === 'tablette-tech') {
+        title = 'Tutoriel Utilisation de la Tablette';
+        loadTabletTutorial();
+    } 
+    
+    document.getElementById('tutorial-title').textContent = title;
+}
+
+function closeTutorial() {
+    // Masquer l'écran de tutoriel
+    document.getElementById('tutorial-content').classList.remove('active');
+    
+    // Réafficher l'écran principal
+    if (currentUserType === 'client') {
+        document.getElementById('client-screen').classList.add('active');
+    } else {
+        document.getElementById('technicien-screen').classList.add('active');
+    }
+}
