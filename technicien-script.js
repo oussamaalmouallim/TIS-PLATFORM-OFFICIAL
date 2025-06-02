@@ -75,7 +75,11 @@ function showModuleVideo(moduleId) {
         case 'NETWORK2':
                 videoTitle = 'Connexion et configuration réseau';
                 videoUrl = src="videos/TUTO-NET2.mp4";
-            break;                      
+            break;   
+        case 'NEWS':
+                videoTitle = 'Connexion et configuration réseau';
+                videoUrl = src="https://www.tiscontrol.com/en/pro_movies.html?m_name=TIS%20Automation%20Technology%20-%20IoT%20Smart%20Home";
+            break;                   
     }
     
     // Créer une modal pour afficher la vidéo
