@@ -259,8 +259,8 @@ function loadScenariosGuide() {
                     <div class="card h-100">
                         <div class="card-body">
                             <h4><i class="fas fa-film text-primary"></i> Vidéo tutoriel</h4>
-                            <p>Création de scénarios pas à pas</p>
-                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('relais')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
+                            <p>Création des scénarios par chambre</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('scenario')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
                         </div>
                     </div>
                 </div>
@@ -268,8 +268,8 @@ function loadScenariosGuide() {
                     <div class="card h-100">
                         <div class="card-body">
                             <h4><i class="fas fa-download text-primary"></i> Scénarios types</h4>
-                            <p>Bibliothèque de scénarios prêts à l'emploi</p>
-                            <a href="#" class="btn btn-outline-primary">Télécharger</a>
+                            <p>Création des scénarios pour toute la maison</p>
+                            <button class="btn btn-outline-primary mt-2" onclick="showModuleVideo('scenario2')"><i class="fas fa-play-circle"></i> Voir vidéo</button>
                         </div>
                     </div>
                 </div>
