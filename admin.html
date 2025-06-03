@@ -2,29 +2,69 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <title>Code d'accès quotidien - Admin</title>
+    <title>Code d'accès quotidien - Admin : Oussama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 2rem;
-            background-color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: #2c3e50; /* Dark blue-gray background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ecf0f1; /* Light text color */
             text-align: center;
         }
+        .container {
+            background-color: #34495e; /* Slightly lighter dark background for container */
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #ecf0f1;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
         #code {
-            font-size: 2rem;
-            margin-top: 1rem;
-            padding: 1rem 2rem;
-            background-color: #222;
-            color: #0f0;
+            font-size: 3rem;
+            margin-top: 1.5rem;
+            padding: 1.5rem 2.5rem;
+            background-color: #e74c3c; /* Striking red for the code */
+            color: #ffffff;
             display: inline-block;
-            border-radius: 8px;
+            border-radius: 10px;
             user-select: all;
+            font-weight: 700;
+            letter-spacing: 3px;
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        #code:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            background-color: #c0392b; /* Darker red on hover */
+        }
+        p {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: #bdc3c7;
         }
     </style>
 </head>
 <body>
-    <h1>Code d'accès généré aujourd'hui</h1>
-    <div id="code">Chargement...</div>
+    <div class="container">
+        <h1> Bonjour Oussama voici le Code d'accès généré aujourd'hui</h1>
+        <div id="code">Chargement...</div>
+        <p>Cliquez sur le code pour le copier facilement.</p>
+    </div>
 
     <script>
         // Fonction qui génère le code comme dans ta plateforme
@@ -32,26 +72,38 @@
             const today = new Date();
             const dateStr = today.toISOString().slice(0, 10).replace(/-/g, '');
             const seed = "TIS" + dateStr;
-
+    
+    // Simple hash function to generate a pseudo-random code from the date
             let hash = 0;
             for (let i = 0; i < seed.length; i++) {
-                hash = ((hash << 5) - hash) + seed.charCodeAt(i);
-                hash = hash & hash; // 32 bits
-            }
-
-            const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // caractères sans confusion
+            hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+            hash = hash & hash; // Convert to 32bit integer
+    }
+    
+    // Convert to alphanumeric string
+            const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Avoiding confusing characters
             let code = 'TIS';
-            let hashAbs = Math.abs(hash);
+            const hashAbs = Math.abs(hash);
             for (let i = 0; i < 5; i++) {
-                code += alphaNum.charAt(hashAbs % alphaNum.length);
-                hashAbs = Math.floor(hashAbs / alphaNum.length);
-            }
-
-            return code;
-        }
+            code += alphaNum.charAt(hashAbs % alphaNum.length);
+            hash = Math.floor(hash / alphaNum.length);
+    }
+    
+    return code;
+};
 
         // Affiche le code dans la page
         document.getElementById('code').textContent = generateDailyCode();
+
+        // Optional: Add copy on click functionality
+        document.getElementById('code').addEventListener('click', function() {
+            const codeText = this.textContent;
+            navigator.clipboard.writeText(codeText).then(() => {
+                alert('Code copié : ' + codeText);
+            }).catch(err => {
+                console.error('Erreur lors de la copie : ', err);
+            });
+        });
     </script>
 </body>
 </html>
