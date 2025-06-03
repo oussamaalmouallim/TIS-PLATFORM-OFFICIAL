@@ -67,7 +67,11 @@ function showModuleVideo(moduleId) {
         case 'LIGHTNING':
                 videoTitle = 'Configuration des circuits d éclairage';
                 videoUrl = src="videos/TUTO-NEW-LIGHTNING.mp4";
-            break;     
+            break;    
+        case 'VR':
+                videoTitle = 'Configuration et automatisation des volets';
+                videoUrl = src="videos/TUTO-VR.mp4";
+            break;   
         case 'NETWORK':
                 videoTitle = 'Connexion et configuration réseau';
                 videoUrl = src="videos/TUTO-NEW-NETWORK.mp4";
