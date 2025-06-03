@@ -1,21 +1,160 @@
 // Variables globales
 let currentUserType = null;
 
+// System to auto-generate access codes
+const generateDailyCode = () => {
+    const today = new Date();
+    const dateStr = today.toISOString().slice(0, 10).replace(/-/g, '');
+    const seed = "TIS" + dateStr;
+    
+    // Simple hash function to generate a pseudo-random code from the date
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) {
+        hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    
+    // Convert to alphanumeric string
+    const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Avoiding confusing characters
+    let code = 'TIS';
+    const hashAbs = Math.abs(hash);
+    for (let i = 0; i < 5; i++) {
+        code += alphaNum.charAt(hashAbs % alphaNum.length);
+        hash = Math.floor(hash / alphaNum.length);
+    }
+    
+    return code;
+};
+
+// Get today's valid access code
+const getTodayAccessCode = () => {
+    return generateDailyCode();
+};
+
+// Codes d'accès valides (now dynamically generated)
+const isValidAccessCode = (code) => {
+    const todayCode = getTodayAccessCode();
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    // Generate yesterday's code for a grace period
+    const dateStr = yesterday.toISOString().slice(0, 10).replace(/-/g, '');
+    const seed = "TIS" + dateStr;
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) {
+        hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+        hash = hash & hash;
+    }
+    const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let yesterdayCode = 'TIS';
+    const hashAbs = Math.abs(hash);
+    for (let i = 0; i < 5; i++) {
+        yesterdayCode += alphaNum.charAt(hashAbs % alphaNum.length);
+        hash = Math.floor(hash / alphaNum.length);
+    }
+    
+    // For backward compatibility
+    const legacyCodes = {
+        "TIS2023": true,
+        "FORMATION2023": true,
+        "TECHDEMO": true
+    };
+    
+    return code === todayCode || code === yesterdayCode || legacyCodes[code] === true;
+};
+
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
+    // Vérifier si l'utilisateur a déjà un code d'accès valide
+    checkExistingAccessCode();
+    
     // Charger les FAQs
     loadFAQs(clientFAQs, 'faqAccordion');
     loadFAQs(techFAQs, 'techFaqAccordion');
     
-    // Écouteurs d'événements pour les sections de tutoriels
-    document.getElementById('voir-tech-4g-keyboard-tutorial').addEventListener('click', loadKeyboard4GTutorial);
+    // Initialiser la recherche dans les FAQs
+    document.getElementById('faq-search').addEventListener('input', function(e) {
+        filterFAQs(e.target.value, 'faqAccordion');
+    });
+    
     document.getElementById('tech-faq-search').addEventListener('input', function(e) {
         filterFAQs(e.target.value, 'techFaqAccordion');
     });
 
-    // Charger le tutoriel du clavier 4G par défaut pour les techniciens
-    loadKeyboard4GTutorial();
+    // Close navbar when item is clicked on mobile
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+                const navbarCollapse = document.querySelector('.navbar-collapse.show');
+                if (navbarCollapse) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            }
+        });
+    });
+    
+    // Add touch-friendly events for mobile
+    if ('ontouchstart' in window) {
+        document.querySelectorAll('.card, .btn, .nav-link').forEach(element => {
+            element.classList.add('touch-friendly');
+        });
+    }
 });
+
+// Fonction pour vérifier l'accès
+function verifyAccessCode() {
+    const codeInput = document.getElementById('access-code').value.trim();
+    
+    if (isValidAccessCode(codeInput)) {
+        // Code valide, enregistrer dans localStorage avec expiration
+        const expiration = new Date();
+        expiration.setHours(expiration.getHours() + 24); // Expire dans 24 heures
+        
+        const accessData = {
+            code: codeInput,
+            expiration: expiration.getTime()
+        };
+        
+        localStorage.setItem('tisAccessData', JSON.stringify(accessData));
+        
+        // Montrer les options de profil
+        document.getElementById('auth-container').style.display = 'none';
+        document.getElementById('profile-container').style.display = 'flex';
+    } else {
+        // Code invalide
+        alert("Code d'accès invalide. Veuillez contacter l'administrateur pour obtenir un code valide.");
+    }
+}
+
+// Vérifier si l'utilisateur a déjà un code d'accès valide
+function checkExistingAccessCode() {
+    const accessDataString = localStorage.getItem('tisAccessData');
+    
+    if (accessDataString) {
+        const accessData = JSON.parse(accessDataString);
+        const now = new Date().getTime();
+        
+        // Vérifier si le code n'a pas expiré
+        if (accessData.expiration > now) {
+            // Code toujours valide
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('profile-container').style.display = 'flex';
+        } else {
+            // Code expiré, supprimer du localStorage
+            localStorage.removeItem('tisAccessData');
+            
+            // Informer l'utilisateur
+            setTimeout(() => {
+                alert("Votre code d'accès a expiré. Le code est renouvelé quotidiennement. Veuillez utiliser le nouveau code: " + getTodayAccessCode());
+            }, 500);
+        }
+    }
+}
+
 // Initialiser la recherche dans les FAQs
 document.getElementById('faq-search').addEventListener('input', function(e) {
     filterFAQs(e.target.value, 'faqAccordion');

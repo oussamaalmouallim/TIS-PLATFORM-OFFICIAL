@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Code d'accès quotidien - Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        #code {
+            font-size: 2rem;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background-color: #222;
+            color: #0f0;
+            display: inline-block;
+            border-radius: 8px;
+            user-select: all;
+        }
+    </style>
+</head>
+<body>
+    <h1>Code d'accès généré aujourd'hui</h1>
+    <div id="code">Chargement...</div>
+
+    <script>
+        // Fonction qui génère le code comme dans ta plateforme
+        function generateDailyCode() {
+            const today = new Date();
+            const dateStr = today.toISOString().slice(0, 10).replace(/-/g, '');
+            const seed = "TIS" + dateStr;
+
+            let hash = 0;
+            for (let i = 0; i < seed.length; i++) {
+                hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+                hash = hash & hash; // 32 bits
+            }
+
+            const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // caractères sans confusion
+            let code = 'TIS';
+            let hashAbs = Math.abs(hash);
+            for (let i = 0; i < 5; i++) {
+                code += alphaNum.charAt(hashAbs % alphaNum.length);
+                hashAbs = Math.floor(hashAbs / alphaNum.length);
+            }
+
+            return code;
+        }
+
+        // Affiche le code dans la page
+        document.getElementById('code').textContent = generateDailyCode();
+    </script>
+</body>
+</html>
