@@ -16,12 +16,12 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     background-image: url('images/background.png');
+    background-color: var(--light-bg);
+    background-image: url('images/background.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-attachment: fixed;
-    background-color: var(--light-bg);
     color: var(--text-dark);
     min-height: 100vh;
 }
@@ -35,6 +35,8 @@ body {
     display: none;
     width: 100%;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .screen.active {
@@ -72,6 +74,9 @@ body {
     padding: 25px;
     max-width: 1400px;
     margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 /* Écran de connexion */
@@ -79,6 +84,9 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 .login-logo {
@@ -89,7 +97,7 @@ body {
 .profile-card {
     padding: 30px;
     text-align: center;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     transition: all 0.3s;
@@ -130,7 +138,7 @@ body {
 }
 
 .tutorial-card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 20px;
@@ -158,7 +166,7 @@ body {
 }
 
 .guide-card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 25px;
@@ -211,7 +219,7 @@ body {
 
 /* Support */
 .support-card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 30px;
@@ -271,7 +279,7 @@ body {
 }
 
 .keyboard-card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 20px;
@@ -298,7 +306,7 @@ body {
 }
 
 .module-card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 25px;
@@ -349,7 +357,7 @@ body {
 .green { background-color: #2ecc71; }
 
 .wiring-card {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 20px;
@@ -424,6 +432,9 @@ body {
     padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 /* Remove the old social bar since we're adding a footer */
@@ -490,6 +501,7 @@ body {
 .social-icons {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .social-icons a {
@@ -502,6 +514,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
     transition: all 0.3s;
+    margin-bottom: 8px;
 }
 
 .social-icons a:hover {
@@ -525,10 +538,12 @@ hr {
     justify-content: flex-end;
     margin-bottom: 0;
     padding-left: 0;
+    flex-wrap: wrap;
 }
 
 .legal-links li {
     margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .legal-links li a {
@@ -543,6 +558,112 @@ hr {
 }
 
 /* Responsive adjustments for footer */
+@media (max-width: 768px) {
+    .footer {
+        text-align: center;
+        padding: 30px 15px 15px;
+    }
+    
+    .footer h5:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .legal-links {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .legal-links li {
+        margin: 5px 10px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 8px;
+    }
+    
+    .row > [class*="col-"] {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer {
+        padding: 25px 10px 15px;
+    }
+    
+    .social-icons a {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .footer h5 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-links li, .legal-links li {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .legal-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .legal-links li {
+        margin: 3px 0;
+    }
+    
+    .copyright {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-link, .btn {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+    }
+    
+    .social-icons a {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .accordion-button {
+        padding: 15px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .col-md-3, .col-md-4, .col-md-6, .col-md-12 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     .footer {
         text-align: center;
@@ -568,31 +689,33 @@ hr {
     }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .login-container {
-        padding: 30px 15px;
-    }
-    
-    .content-container {
-        padding: 15px;
-    }
-    
-    .tutorial-body, .guide-body {
-        padding: 15px;
-    }
-    
-    .profile-card, .tutorial-card, .guide-card, .support-card {
-        padding: 20px 15px;
-    }
+#auth-container .card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: none;
 }
 
+#auth-container .card-body {
+    padding: 25px;
+}
+
+#auth-container .form-control {
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ddd;
+}
+
+#auth-container .btn-primary {
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+/* 📱 Ajustement pour téléphone */
 @media (max-width: 768px) {
   body {
-    background-attachment: scroll;   /* Fixe le problème de compatibilité mobile */
-    background-size: contain;        /* Affiche toute l'image sans zoom excessif */
-    background-position: center center; 
-      /* Pour un bon rendu sur petits écrans */
+    background-attachment: scroll;     /* Compatibilité mobile */
+    background-repeat: no-repeat;      /* Toujours désactiver la répétition */
+    background-size: contain;
+    background-position: center center;
   }
 }
-
