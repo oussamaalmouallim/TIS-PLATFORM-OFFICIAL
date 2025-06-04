@@ -28,6 +28,7 @@ body {
 
 .container-fluid {
     padding: 0;
+    padding-bottom: 80px;
 }
 
 /* Écrans et navigation */
@@ -351,9 +352,9 @@ body {
     margin-right: 10px;
 }
 
-.brown { background-color: #5e0606; }
-.Orange { background-color: #d66305; }
-.Blue { background-color: #3049bb; }
+.red { background-color: #e74c3c; }
+.black { background-color: #333; }
+.yellow { background-color: #f1c40f; }
 .green { background-color: #2ecc71; }
 
 .wiring-card {
@@ -460,6 +461,10 @@ body {
     margin-bottom: 20px;
     position: relative;
     padding-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .footer h5:after {
@@ -470,6 +475,10 @@ body {
     width: 30px;
     height: 2px;
     background: var(--accent-color);
+}
+
+.footer h5 .toggle-icon {
+    display: none;
 }
 
 .footer-links {
@@ -569,17 +578,52 @@ hr {
         transform: translateX(-50%);
     }
     
+    .footer h5 {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+    
+    .footer h5 .toggle-icon {
+        display: inline-block;
+        transition: transform 0.3s;
+    }
+    
+    .footer h5.active .toggle-icon i {
+        transform: rotate(180deg);
+    }
+    
+    .footer h5.active + .footer-links,
+    .footer h5.active + .social-icons,
+    .footer h5.active ~ .footer-links {
+        display: block;
+    }
+    
+    .footer-links, .social-icons {
+        display: none;
+    }
+    
+    .footer h5.active + .footer-links,
+    .footer h5.active + .social-icons {
+        display: block;
+        margin-bottom: 15px;
+    }
+    
     .social-icons {
         justify-content: center;
     }
     
     .legal-links {
         justify-content: center;
+        flex-wrap: wrap;
         margin-top: 15px;
     }
     
     .legal-links li {
-        margin: 5px 10px;
+        margin: 0 10px;
     }
     
     .footer-links li {
@@ -646,7 +690,14 @@ hr {
     }
 }
 
+
 @media (max-width: 768px) {
+      body {
+    background-attachment: scroll; 
+    background-repeat: no-repeat;  /* Fixe le problème de compatibilité mobile */
+    background-size: contain;        /* Affiche toute l'image sans zoom excessif */
+    background-position: center top; /* Repositionne légèrement si besoin */
+    }
     table {
         display: block;
         overflow-x: auto;
@@ -661,31 +712,6 @@ hr {
     .col-md-3, .col-md-4, .col-md-6, .col-md-12 {
         padding-left: 10px;
         padding-right: 10px;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer {
-        text-align: center;
-    }
-    
-    .footer h5:after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .social-icons {
-        justify-content: center;
-    }
-    
-    .legal-links {
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 15px;
-    }
-    
-    .legal-links li {
-        margin: 0 10px;
     }
 }
 
@@ -710,12 +736,3 @@ hr {
     font-weight: 600;
 }
 
-/* 📱 Ajustement pour téléphone */
-@media (max-width: 768px) {
-  body {
-    background-attachment: scroll;     /* Compatibilité mobile */
-    background-repeat: no-repeat;      /* Toujours désactiver la répétition */
-    background-size: contain;
-    background-position: center center;
-  }
-}
