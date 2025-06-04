@@ -103,6 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
             element.classList.add('touch-friendly');
         });
     }
+
+    // Footer collapsible sections for mobile
+    const footerHeadings = document.querySelectorAll('.footer h5');
+    footerHeadings.forEach(heading => {
+        heading.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                this.classList.toggle('active');
+                this.classList.toggle('collapsed');
+            }
+        });
+    });
 });
 
 // Fonction pour vérifier l'accès
