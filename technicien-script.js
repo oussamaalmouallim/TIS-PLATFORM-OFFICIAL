@@ -45,7 +45,7 @@ function showModuleVideo(moduleId) {
             videoUrl = src="images/TUTO-4ZONES.mp4";
             break;
         case '4g':
-            videoTitle = 'Configuration des modules 4 Zones';
+            videoTitle = 'Configuration des modules 4 entrées numériques';
             videoUrl = src="images/TUTO-4ZONES.mp4";
             break;
         case 'luna':
@@ -93,16 +93,16 @@ function showModuleVideo(moduleId) {
                 videoUrl = src="https://www.tiscontrol.com/en/pro_movies.html?m_name=TIS%20Automation%20Technology%20-%20IoT%20Smart%20Home";
             break; 
         case 'IP':
-                videoTitle = 'Automatisations et scènes personnalisées';
+                videoTitle = 'Configuration de la passerelle IP';
                 videoUrl = src="videos/TUTO-IP.mp4";
             break; 
         case 'DIM':
-                videoTitle = 'Automatisations et scènes personnalisées';
+                videoTitle = 'Contrôle graduel intensité lumineuse';
                 videoUrl = src="videos/TUTO-DIM.mp4";
             break; 
         case '4GANG':
-                videoTitle = 'Automatisations et scènes personnalisées';
-                videoUrl = src="videos/TUTO-4GANG.mp4";
+                videoTitle = 'Configuration Clavier TER-4G';
+                videoUrl = src="videos/TUTO-4g.mp4";
             break;      
     }
     
