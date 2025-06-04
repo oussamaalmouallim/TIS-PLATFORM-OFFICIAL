@@ -588,11 +588,13 @@ hr {
     }
     
     .footer h5.active + .footer-links,
-    .footer h5.active + .social-icons,
     .footer h5.active ~ .footer-links {
         display: block;
     }
     
+    .footer-links {
+        display: none;
+    }
     
     .footer h5.active + .footer-links {
         display: block;
