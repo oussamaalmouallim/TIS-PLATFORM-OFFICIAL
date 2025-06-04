@@ -91,6 +91,18 @@ function showModuleVideo(moduleId) {
         case 'scenario2':
                 videoTitle = 'Automatisations et scènes personnalisées';
                 videoUrl = src="https://www.tiscontrol.com/en/pro_movies.html?m_name=TIS%20Automation%20Technology%20-%20IoT%20Smart%20Home";
+            break; 
+        case 'IP':
+                videoTitle = 'Automatisations et scènes personnalisées';
+                videoUrl = src="videos/TUTO-IP.mp4";
+            break; 
+        case 'DIM':
+                videoTitle = 'Automatisations et scènes personnalisées';
+                videoUrl = src="videos/TUTO-DIM.mp4";
+            break; 
+        case '4GANG':
+                videoTitle = 'Automatisations et scènes personnalisées';
+                videoUrl = src="videos/TUTO-4GANG.mp4";
             break;      
     }
     

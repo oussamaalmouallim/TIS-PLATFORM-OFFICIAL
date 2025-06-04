@@ -289,7 +289,7 @@ function loadKeyboard4GTutorial() {
                 <i class="fas fa-check-circle"></i> Félicitations ! Vous maîtrisez maintenant l'installation et la programmation du clavier 4G.
             </div>
             <p>Pour plus d'informations sur les fonctionnalités avancées ou les mises à jour firmware, consultez la documentation technique complète.</p>
-            <button class="btn btn-secondary mt-2" onclick="showModuleVideo('relais')"><i class="fas fa-play-circle"></i> Voir vidéo
+            <button class="btn btn-secondary mt-2" onclick="showModuleVideo('4GANG')"><i class="fas fa-play-circle"></i> Voir vidéo
             </button>
         </div>
     `;

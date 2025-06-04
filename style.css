@@ -723,7 +723,7 @@ hr {
   body {
     background-attachment: scroll;     /* Compatibilité mobile */
     background-repeat: no-repeat;      /* Toujours désactiver la répétition */
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
   }
 }
