@@ -593,12 +593,8 @@ hr {
         display: block;
     }
     
-    .footer-links, .social-icons {
-        display: none;
-    }
     
-    .footer h5.active + .footer-links,
-    .footer h5.active + .social-icons {
+    .footer h5.active + .footer-links {
         display: block;
         margin-bottom: 15px;
     }
