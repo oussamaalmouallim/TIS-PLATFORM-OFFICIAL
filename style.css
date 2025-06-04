@@ -28,7 +28,6 @@ body {
 
 .container-fluid {
     padding: 0;
-    padding-bottom: 80px;
 }
 
 /* Écrans et navigation */
@@ -352,9 +351,9 @@ body {
     margin-right: 10px;
 }
 
-.red { background-color: #e74c3c; }
-.black { background-color: #333; }
-.yellow { background-color: #f1c40f; }
+.brown { background-color: #5e0606; }
+.Orange { background-color: #d66305; }
+.Blue { background-color: #3049bb; }
 .green { background-color: #2ecc71; }
 
 .wiring-card {
@@ -461,10 +460,6 @@ body {
     margin-bottom: 20px;
     position: relative;
     padding-bottom: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .footer h5:after {
@@ -475,10 +470,6 @@ body {
     width: 30px;
     height: 2px;
     background: var(--accent-color);
-}
-
-.footer h5 .toggle-icon {
-    display: none;
 }
 
 .footer-links {
@@ -690,14 +681,7 @@ hr {
     }
 }
 
-
 @media (max-width: 768px) {
-      body {
-    background-attachment: scroll; 
-    background-repeat: no-repeat;  /* Fixe le problème de compatibilité mobile */
-    background-size: contain;        /* Affiche toute l'image sans zoom excessif */
-    background-position: center top; /* Repositionne légèrement si besoin */
-    }
     table {
         display: block;
         overflow-x: auto;
@@ -736,3 +720,12 @@ hr {
     font-weight: 600;
 }
 
+/* 📱 Ajustement pour téléphone */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;     /* Compatibilité mobile */
+    background-repeat: no-repeat;      /* Toujours désactiver la répétition */
+    background-size: contain;
+    background-position: center center;
+  }
+}
