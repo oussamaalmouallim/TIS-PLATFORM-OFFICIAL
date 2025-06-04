@@ -28,25 +28,9 @@ function showModuleVideo(moduleId) {
     let videoUrl = '';
     
     switch(moduleId) {
-        case 'relais':
-            videoTitle = 'Configuration des modules Relais';
-            videoUrl = src="images/TUTO-4ZONES.mp4";
-            break;
-        case 'variateur':
-            videoTitle = 'Configuration des modules Variateurs';
-            videoUrl = 'https://www.youtube.com/embed/example_variateur';
-            break;
-        case 'ip-port':
-            videoTitle = 'Configuration des modules IP Port';
-            videoUrl = 'https://www.youtube.com/embed/example_ipport';
-            break;
-        case '4-zones':
+        case '4ZONE':
             videoTitle = 'Configuration des modules 4 Zones';
-            videoUrl = src="images/TUTO-4ZONES.mp4";
-            break;
-        case '4g':
-            videoTitle = 'Configuration des modules 4 entrées numériques';
-            videoUrl = src="images/TUTO-4ZONES.mp4";
+            videoUrl = src="videos/TUTO-4ZONE.mp4";
             break;
         case 'luna':
             videoTitle = 'Configuration des modules 4 Zones';
@@ -102,7 +86,7 @@ function showModuleVideo(moduleId) {
             break; 
         case '4GANG':
                 videoTitle = 'Configuration Clavier TER-4G';
-                videoUrl = src="videos/TUTO-4g.mp4";
+                videoUrl = src="videos/TUTO-4G.mp4";
             break;      
     }
     
