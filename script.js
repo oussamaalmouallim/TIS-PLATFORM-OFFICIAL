@@ -158,10 +158,6 @@ function checkExistingAccessCode() {
             // Code expiré, supprimer du localStorage
             localStorage.removeItem('tisAccessData');
             
-            // Informer l'utilisateur
-            setTimeout(() => {
-                alert("Votre code d'accès a expiré. Le code est renouvelé quotidiennement. Veuillez utiliser le nouveau code: " + getTodayAccessCode());
-            }, 500);
         }
     }
 }

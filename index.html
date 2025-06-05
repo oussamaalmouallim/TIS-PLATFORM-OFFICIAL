@@ -664,34 +664,124 @@
                     <div class="modal-body">
                         <form id="feedback-form">
                             <div class="mb-3">
-                                <label class="form-label">Type de retour</label>
-                                <select class="form-select">
-                                    <option>Suggestion d'amélioration</option>
-                                    <option>Signalement d'erreur</option>
-                                    <option>Question</option>
+                                <label for="typeDeRetour" class="form-label">Type de retour</label>
+                                <select class="form-select" id="typeDeRetour" name="type_de_retour" required>
+                                    <option value="Suggestion d'amelioration">Suggestion d'amélioration</option>
+                                    <option value="Signalement d'erreur">Signalement d'erreur</option>
+                                    <option value="Question">Question</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Sujet</label>
-                                <input type="text" class="form-control" required>
+                                <label for="sujet" class="form-label">Sujet</label>
+                                <input type="text" class="form-control" id="sujet" name="sujet" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" rows="5" required></textarea>
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" rows="5" id="description" name="description" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Email de contact</label>
-                                <input type="email" class="form-control" required>
+                                <label for="emailContact" class="form-label">Email de contact</label>
+                                <input type="email" class="form-control" id="emailContact" name="email_de_contact" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary" onclick="submitFeedback()">Envoyer</button>
+                        <button type="submit" class="btn btn-primary" id="submitTogooglesheet">Envoyer</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz-yy6ThTIJAC-UBQ5HaJjSV6RFYHl9ubZQRRgn1i1NNvI8vne3bNxvkqhMrcMIiwg2/exec'; // Votre URL Web App
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const feedbackForm = document.getElementById('feedback-form');
+        const submitButton = document.getElementById('submitTogooglesheet');
+        const modalBody = feedbackForm.closest('.modal-body');
+
+        if (feedbackForm && submitButton) {
+            submitButton.addEventListener('click', async function(event) {
+                event.preventDefault();
+
+                if (!feedbackForm.checkValidity()) {
+                    feedbackForm.reportValidity();
+                    return;
+                }
+
+                // --- MODIFICATION ICI : Créer directement un objet FormData ---
+                const formData = new FormData(feedbackForm);
+                // Apps Script attend généralement un objet de type application/x-www-form-urlencoded pour e.parameter
+                // On peut le convertir ou s'assurer que les noms des champs sont bien capturés par FormData.
+                // La méthode URLSearchParams est plus directe pour l'envoi de POST vers Apps Script.
+                // L'erreur "e.parameter undefined" suggère que 'mode: no-cors' pourrait interférer
+                // avec la façon dont Apps Script interprète le corps de la requête.
+
+                // Solution 1: Utiliser la méthode `submit` directe du formulaire (si possible)
+                // Ou Solution 2: S'assurer que le Content-Type est STRICTEMENT respecté, ce qui est difficile avec 'no-cors'.
+                // La meilleure approche est souvent de simuler un formulaire HTML classique.
+
+                // Nous allons créer un objet de données simple qui correspond aux 'name' des inputs
+                const dataToSend = {
+                    type_de_retour: feedbackForm.querySelector('[name="type_de_retour"]').value,
+                    sujet: feedbackForm.querySelector('[name="sujet"]').value,
+                    description: feedbackForm.querySelector('[name="description"]').value,
+                    email_de_contact: feedbackForm.querySelector('[name="email_de_contact"]').value
+                };
+
+                // Disable button and show loading indicator
+                submitButton.disabled = true;
+                submitButton.textContent = 'Envoi en cours...';
+                const loadingSpinner = document.createElement('span');
+                loadingSpinner.className = 'spinner-border spinner-border-sm';
+                loadingSpinner.setAttribute('role', 'status');
+                loadingSpinner.setAttribute('aria-hidden', 'true');
+                submitButton.prepend(loadingSpinner);
+
+                try {
+                    const response = await fetch(WEB_APP_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Gardez no-cors car Apps Script ne gère pas CORS par défaut.
+                                         // C'est pourquoi on ne peut pas lire la réponse JSON.
+                        headers: {
+                            // C'est crucial pour que Apps Script parse e.parameter
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        // Utiliser URLSearchParams pour formater les données comme attendu
+                        body: new URLSearchParams(dataToSend).toString()
+                    });
+
+                    // Le reste du code de feedback...
+
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'alert alert-success mt-3';
+                    successMessage.textContent = 'Votre retour a été envoyé avec succès !';
+                    modalBody.appendChild(successMessage);
+
+                    setTimeout(() => {
+                        feedbackForm.reset();
+                        const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+                        modal.hide();
+                    }, 2000);
+
+                } catch (error) {
+                    console.error('Error sending feedback:', error);
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'alert alert-danger mt-3';
+                    errorMessage.textContent = 'Une erreur est survenue lors de l\'envoi de votre retour. Veuillez réessayer.';
+                    modalBody.appendChild(errorMessage);
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Envoyer';
+                    if (loadingSpinner.parentNode) {
+                        loadingSpinner.parentNode.removeChild(loadingSpinner);
+                    }
+                }
+            });
+        }
+    });
+</script>
 
         <!-- Modal Training -->
         <div class="modal fade" id="trainingModal" tabindex="-1">
