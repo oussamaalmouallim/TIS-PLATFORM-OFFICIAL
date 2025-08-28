@@ -1,21 +1,19 @@
 // Variables globales
 let currentUserType = null;
 
-// System to auto-generate access codes
-const generateDailyCode = () => {
+// Fonction de génération du code
+function generateDailyCode() {
     const today = new Date();
     const dateStr = today.toISOString().slice(0, 10).replace(/-/g, '');
     const seed = "TIS" + dateStr;
     
-    // Simple hash function to generate a pseudo-random code from the date
     let hash = 0;
     for (let i = 0; i < seed.length; i++) {
         hash = ((hash << 5) - hash) + seed.charCodeAt(i);
-        hash = hash & hash; // Convert to 32bit integer
+        hash = hash & hash;
     }
     
-    // Convert to alphanumeric string
-    const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Avoiding confusing characters
+    const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let code = 'TIS';
     const hashAbs = Math.abs(hash);
     for (let i = 0; i < 5; i++) {
@@ -24,7 +22,7 @@ const generateDailyCode = () => {
     }
     
     return code;
-};
+}
 
 // Get today's valid access code
 const getTodayAccessCode = () => {

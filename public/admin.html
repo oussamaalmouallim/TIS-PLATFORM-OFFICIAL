@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIS Server Dashboard - Authentification & Monitoring</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --text: #374151;
+            --text-muted: #6b7280;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            color: var(--text);
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .dashboard-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .server-info {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+            border-left: 4px solid var(--info);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        .code-display {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.02));
+            border: 2px dashed var(--info);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .code-display h3 {
+            color: var(--info);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .code-display p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .input-section {
+            margin: 25px 0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            letter-spacing: 1px;
+            text-align: center;
+            background: var(--light);
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--info);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin: 8px;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--info), #2563eb);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #d97706);
+            color: white;
+        }
+
+        .btn-error {
+            background: linear-gradient(135deg, var(--error), #dc2626);
+            color: white;
+        }
+
+        .status-message {
+            padding: 18px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .status-info {
+            background: rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .admin-panel {
+            grid-column: 1 / -1;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--info);
+            background: white;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--info);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .test-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .email-status {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .footer p {
+            margin: 8px 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard {
+                padding: 15px;
+            }
+            
+            .dashboard-title h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .test-buttons {
+                justify-content: stretch;
+            }
+            
+            .btn {
+                flex: 1;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <div class="logo-icon">📧</div>
+                <h1>TIS Authentication Dashboard</h1>
+            </div>
+            <div class="version-badge">EMAIL VERSION</div>
+            <p class="subtitle">Interface professionnelle - Test avec serveur Node.js et envoi par email</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Code d'accès -->
+            <div class="card">
+                <div class="card-header">
+                    <span style="font-size: 1.5rem;">🔐</span>
+                    <h3 class="card-title">Code d'Accès Quotidien</h3>
+                </div>
+                
+                <!-- Info serveur -->
+                <div class="server-info">
+                    <strong>📧 Mode email actif</strong><br>
+                    Les codes sont envoyés par email via le serveur Node.js.
+                </div>
+
+                <!-- Section d'affichage du code actuel -->
+                <div class="code-display">
+                    <h3 id="currentCode">Loading...</h3>
+                    <p>Code valide jusqu'à demain</p>
+                </div>
+            </div>
+
+            <!-- Authentification -->
+            <div class="card">
+                <div class="card-header">
+                    <span style="font-size: 1.5rem;">🛡️</span>
+                    <h3 class="card-title">Authentification</h3>
+                </div>
+                
+                <!-- Section d'authentification -->
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="codeInput">Entrez le code d'accès :</label>
+                        <input type="text" id="codeInput" placeholder="TIS12345" maxlength="8" autocomplete="off">
+                    </div>
+                    <button class="btn btn-primary" onclick="verifyCode()">🔓 Vérifier le code</button>
+                </div>
+
+                <!-- Messages de statut -->
+                <div id="statusMessage" class="hidden"></div>
+            </div>
+        </div>
+
+        <!-- Section admin (cachée par défaut) -->
+        <div id="adminPanel" class="admin-panel hidden">
+            <div class="card-header">
+                <span style="font-size: 1.5rem;">🛠</span>
+                <h3 class="card-title">Panneau d'Administration</h3>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="todayCode">TIS????</div>
+                    <div class="stat-label">Code du jour</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="attempts">0</div>
+                    <div class="stat-label">Tentatives</div>
+                </div>
+            </div>
+
+            <div class="test-buttons">
+                <button class="btn btn-error" onclick="sendEmailViaServer()">
+                    📧 Envoyer par Email
+                </button>
+                <button class="btn btn-success" onclick="refreshCode()">
+                    🔄 Actualiser
+                </button>
+                <button class="btn btn-primary" onclick="testEmailConfig()">
+                    🔧 Tester Config Email
+                </button>
+                <button class="btn btn-info" onclick="testDailyEmail()">
+                    🌅 Test Envoi 7h00
+                </button>
+            </div>
+
+            <div class="email-status" id="emailStatus">
+                <strong>📧 Configuration email :</strong><br>
+                <span id="emailConfigStatus">🔄 Vérification...</span>
+            </div>
+
+            <div class="server-info">
+                <strong>🚀 Fonctionnalités disponibles :</strong><br>
+                • Envoi d'email via serveur Node.js<br>
+                • Code généré côté serveur<br>
+                • Email HTML formaté avec style<br>
+                • <strong>🌅 Envoi automatique quotidien à 07h00 (Casablanca)</strong><br>
+                • Test de configuration email
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Projet TIS - Version Email Dashboard 1.0</strong></p>
+            <p id="recipientEmail">📧 Destinataire : Configuration requise</p>
+            <p id="serverStatus">🔄 Vérification du serveur...</p>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentCode = '';
+        let attempts = 0;
+        let isLoggedIn = false;
+        let serverAvailable = false;
+
+        // Fonction de génération du code côté client (pour vérification)
+        function generateDailyCode() {
+            const today = new Date();
+            const dateStr = today.toISOString().slice(0, 10).replace(/-/g, '');
+            const seed = "TIS" + dateStr;
+            
+            let hash = 0;
+            for (let i = 0; i < seed.length; i++) {
+                hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+                hash = hash & hash;
+            }
+            
+            const alphaNum = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = 'TIS';
+            const hashAbs = Math.abs(hash);
+            for (let i = 0; i < 5; i++) {
+                code += alphaNum.charAt(hashAbs % alphaNum.length);
+                hash = Math.floor(hash / alphaNum.length);
+            }
+            
+            return code;
+        }
+
+        // Vérifier si le serveur est disponible
+        async function checkServerStatus() {
+            try {
+                const response = await fetch('/api/code');
+                if (response.ok) {
+                    serverAvailable = true;
+                    document.getElementById('serverStatus').innerHTML = '✅ Serveur connecté';
+                    return true;
+                }
+            } catch (error) {
+                console.log('Mode serveur non disponible, utilisation du mode client');
+            }
+            
+            serverAvailable = false;
+            document.getElementById('serverStatus').innerHTML = '⚠️ Mode client (serveur non disponible)';
+            return false;
+        }
+
+        // Tester la configuration email
+        async function testEmailConfig() {
+            try {
+                const response = await fetch('/test-email-config');
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('emailConfigStatus').innerHTML = 
+                        `✅ Configuration valide<br>Service: ${data.service}<br>Utilisateur: ${data.user}`;
+                    showMessage('✅ Configuration email valide !', 'success');
+                } else {
+                    throw new Error(data.details);
+                }
+            } catch (error) {
+                document.getElementById('emailConfigStatus').innerHTML = 
+                    `❌ Configuration invalide<br>${error.message}`;
+                showMessage(`❌ Erreur de configuration: ${error.message}`, 'error');
+            }
+        }
+
+        // Obtenir le code depuis le serveur ou générer côté client
+        async function getCurrentCode() {
+            if (serverAvailable) {
+                try {
+                    const response = await fetch('/api/code');
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data.code;
+                    }
+                } catch (error) {
+                    console.log('Erreur serveur, utilisation du code client');
+                }
+            }
+            
+            return generateDailyCode();
+        }
+
+        // Vérification du code
+        async function verifyCode() {
+            const inputCode = document.getElementById('codeInput').value.trim().toUpperCase();
+            const todayCode = await getCurrentCode();
+            
+            attempts++;
+            document.getElementById('attempts').textContent = attempts;
+
+            if (inputCode === todayCode) {
+                showMessage('✅ Code correct ! Accès autorisé.', 'success');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                document.getElementById('codeInput').disabled = true;
+                isLoggedIn = true;
+                
+                // Tester la configuration email une fois connecté
+                testEmailConfig();
+                
+                // Animation de succès
+                document.querySelector('.dashboard').classList.add('pulse');
+                setTimeout(() => {
+                    document.querySelector('.dashboard').classList.remove('pulse');
+                }, 500);
+            } else {
+                showMessage('❌ Code incorrect. Veuillez réessayer.', 'error');
+                document.getElementById('codeInput').value = '';
+                document.getElementById('codeInput').focus();
+            }
+        }
+
+        // Afficher un message de statut
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('statusMessage');
+            messageDiv.textContent = text;
+            messageDiv.className = `status-message status-${type}`;
+            messageDiv.classList.remove('hidden');
+            
+            // Masquer le message après 7 secondes
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+            }, 7000);
+        }
+
+        // Envoyer le code par email via le serveur
+        async function sendEmailViaServer() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            // Animation de chargement
+            btn.innerHTML = '<span class="loading"></span>Envoi en cours...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        test: true,
+                        source: 'admin-panel'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage(`✅ Email envoyé avec succès ! ID: ${data.messageId.substring(0, 8)}...`, 'success');
+                    console.log('✅ Email envoyé via serveur:', data);
+                    
+                    // Afficher les détails dans la console
+                    console.log('📧 Détails de l\'envoi:');
+                    console.log('   - ID du message:', data.messageId);
+                    console.log('   - Code envoyé:', data.code);
+                    console.log('   - Destinataire:', data.recipient);
+                    console.log('   - Timestamp:', data.timestamp);
+                } else {
+                    throw new Error(data.error || 'Erreur serveur inconnue');
+                }
+
+            } catch (error) {
+                console.error('❌ Erreur envoi email:', error);
+                showMessage(`❌ Erreur lors de l'envoi: ${error.message}`, 'error');
+            } finally {
+                // Restaurer le bouton
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Actualiser le code
+        async function refreshCode() {
+            const newCode = await getCurrentCode();
+            document.getElementById('todayCode').textContent = newCode;
+            document.getElementById('currentCode').textContent = newCode;
+            showMessage('🔄 Code actualisé !', 'info');
+        }
+
+        // Tester l'envoi automatique quotidien
+        async function testDailyEmail() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            // Animation de chargement
+            btn.innerHTML = '<span class="loading"></span>Test en cours...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/send-daily-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage(`✅ Test envoi quotidien réussi ! Format email 7h00 envoyé.`, 'success');
+                    console.log('✅ Test envoi quotidien via serveur:', data);
+                } else {
+                    throw new Error(data.error || 'Erreur test envoi quotidien');
+                }
+
+            } catch (error) {
+                console.error('❌ Erreur test envoi quotidien:', error);
+                showMessage(`❌ Erreur test: ${error.message}`, 'error');
+            } finally {
+                // Restaurer le bouton
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Gestion de l'appui sur Entrée
+        document.getElementById('codeInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyCode();
+            }
+        });
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Vérifier le statut du serveur
+            await checkServerStatus();
+            
+            // Obtenir le code actuel
+            const todayCode = await getCurrentCode();
+            document.getElementById('currentCode').textContent = todayCode;
+            document.getElementById('todayCode').textContent = todayCode;
+            document.getElementById('codeInput').focus();
+
+            // Afficher les informations de debug dans la console
+            console.log('📧 TIS Test Project - Email Version');
+            console.log('=====================================');
+            console.log('📅 Code du jour:', todayCode);
+            console.log('🌐 Serveur disponible:', serverAvailable);
+            console.log('📧 Version email active');
+            console.log('=====================================');
+
+            // Message d'accueil
+            if (serverAvailable) {
+                showMessage('🚀 Dashboard chargé. Le serveur Node.js gère l\'envoi d\'emails.', 'info');
+                
+                // Tester la config email en arrière-plan
+                setTimeout(async () => {
+                    try {
+                        const response = await fetch('/test-email-config');
+                        const data = await response.json();
+                        if (data.success) {
+                            document.getElementById('recipientEmail').innerHTML = 
+                                `📧 Service: ${data.service} | Utilisateur: ${data.user}`;
+                        }
+                    } catch (error) {
+                        document.getElementById('recipientEmail').innerHTML = 
+                            '📧 Configuration email requise';
+                    }
+                }, 1000);
+            } else {
+                showMessage('⚠️ Serveur non disponible. Fonctionnement en mode client uniquement.', 'info');
+            }
+        });
+
+        // Protection contre la fermeture accidentelle
+        window.addEventListener('beforeunload', function(e) {
+            if (attempts > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
