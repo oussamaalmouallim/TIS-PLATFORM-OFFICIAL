@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "nodemailer": "^6.9.7"
+    "nodemailer": "^6.9.7",
+    "react-scripts": "^5.0.1"
   },
   "engines": {
     "node": ">=18.0.0"
   }
-  
 }
